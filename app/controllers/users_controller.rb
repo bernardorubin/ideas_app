@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params.except(:current_password))
-    redirect_to root_path, notice: 'Password Updated successfully!'
+    current_user.update(user_params)
+    redirect_to root_path, notice: 'User Updated Successfully!'
   end
 
   private

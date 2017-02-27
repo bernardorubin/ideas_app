@@ -3,7 +3,7 @@ class CreateIdeas < ActiveRecord::Migration[5.0]
     create_table :ideas do |t|
       t.string :title
       t.string :description
-      t.string :likes
+      t.integer :likes, default: 0
       t.references :user, foreign_key: true, index: true
 
       t.timestamps

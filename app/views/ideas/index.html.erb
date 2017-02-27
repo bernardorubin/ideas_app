@@ -1,1 +1,35 @@
-<h1>Hello World</h1>
+<div class="container">
+  <div class="row">
+  <div class="logo col-xs-11"> <img src="http://unsplash.it/100" alt=""> </div>
+  <div class="logo col-xs-1"> <%= link_to 'New Idea', new_idea_path, class: "btn btn-default" %> </div>
+  </div>
+  <div class="col-xs-12">
+  <% @ideas.each do |i| %>
+    <div class="row">
+      <hr>
+
+      <div class="row">
+        <div class="col-xs-9">
+          <h4> <strong><%= i.title %></strong> </h4>
+          <p> <%= i.description %> </p>
+        </div>
+        <div class="col-xs-3">
+
+        <% if can?(:manage, i) %>
+          <%= link_to 'Edit', edit_idea_path(i) %>
+          <%= link_to 'Delete', idea_path(i), method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+        <% end  %>
+
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-xs-3"><% @username = User.find i.user_id %>By <%= @username.first_name %></div>
+      <div class="col-xs-3"> Joined | Like </div>
+      <div class="col-xs-6t" style="text-align:right">Members: 5 | Likes: 5</div>
+      </div>
+    </div>
+  <% end  %>
+  <hr>
+  </div>
+</div>

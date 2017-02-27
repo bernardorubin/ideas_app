@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users, only:[:new,
                           :create,
                           :update]
+  get 'update' => 'users#edit'
+  patch 'update' => 'users#update'
 
   resources :ideas do
     resources :reviews, shallow: true

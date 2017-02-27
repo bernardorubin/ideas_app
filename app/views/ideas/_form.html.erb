@@ -1,0 +1,19 @@
+<p><%= @idea.errors.full_messages.join(', ') %></p>
+<div class="container-fluid">
+  <div class="col-xs-8 col-xs-offset-2">
+    <%= form_for @idea do |i| %>
+      <div class="form-group">
+        <%= i.label :title %>
+        <%= i.text_field :title, class: 'form-control'%>
+      </div>
+      <div>
+        <%= i.label :description %>
+        <%= i.text_area :description, class: 'form-control' %>
+      </div>
+      <br>
+      <%= i.submit "Submit", class: 'btn btn-default btn-secondary' %>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>
