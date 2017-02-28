@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   get 'update' => 'users#edit'
   patch 'update' => 'users#update'
 
+  # patch 'likes' => 'ideas#likes'
+
   resources :ideas do
     resources :reviews, shallow: true
+    resources :likes, shallow: true
   end
 
   resources :sessions, only:[:new, :create] do

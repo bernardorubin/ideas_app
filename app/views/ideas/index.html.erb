@@ -23,7 +23,7 @@
       </div>
       <div class="row">
       <div class="col-xs-3"><% @username = User.find i.user_id %>By <%= @username.first_name %></div>
-      <div class="col-xs-3"> Joined | Like </div>
+      <div class="col-xs-3"> <span class="btn btn-default">Joined</span> | <%= link_to '', idea_likes_path(i), class: "btn btn-default fa fa-thumbs-up", method: :post %> </div>
       <div class="col-xs-6" style="text-align:right">Members: 5 | Likes: <%= i.likes %></div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  after_action :log_everything
+  before_action :log_everything
 
   def authenticate_user!
     redirect_to new_session_path, alert: 'Please sign in' unless user_signed_in?
