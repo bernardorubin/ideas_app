@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
+ $(document).ready(function(){
+  $( ".title" ).click(function() {
+    $(this).next('div').fadeToggle("description");
+  });
+  $( ".lighttrigger" ).mouseenter(function() {
+    $(".lightbulb").toggleClass("yellow");
+  });
+  $( ".lighttrigger").mouseleave(function() {
+    $(".lightbulb").toggleClass("yellowleave");
+  });
+});

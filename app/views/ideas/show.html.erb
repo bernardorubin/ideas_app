@@ -1,0 +1,100 @@
+<div class="container">
+    <h1>
+        <%= @idea.title %>
+    </h1>
+
+</div>
+<img src="http://unsplash.it/g/1300/300/?random" alt="" class="img-responsive">
+
+<div class="container">
+    <hr>
+    <p> <%= @idea.description %></p>
+
+    <% if can?(:manage, @idea) %>
+      <%= link_to 'Edit', edit_idea_path(@idea) %>
+      <%= link_to 'Delete', idea_path(@idea), method: :delete,
+  data: { confirm: 'Are you sure?' } %>
+    <% end  %>
+    <hr class="hidden-md hidden-lg">
+</div>
+
+<div class="container">
+    <div class="row"></div>
+
+    <div class="row container">
+        <span class="row">
+            <ul class="media-list">
+                <li class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="http://unsplash.it/110" alt="...">
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <h2 class="media-heading"> <% @username = User.find @idea.user_id %>
+                                            <%= @username.first_name %></h2>
+                    </div>
+                </li>
+            </ul>
+        </span>
+    </div>
+  </div>
+      <hr>
+
+<div id="ideas_container" class="container">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="row">
+            <%= @review.errors.full_messages.join(',') %>
+            <h1>Leave a review</h1>
+
+            <%= form_for [@idea, @review] do |f| %>
+            <div class="form-group">
+                <%= f.text_area :body, class: 'form-control' %>
+            </div>
+
+            <div class="container col-xs-12">
+                <%= f.submit "Submit", class: 'btn btn-default btn-secondary pull-right' %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+
+
+    <% @idea.reviews.last_first.each do |review| %>
+
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="row">
+            <ul class="media-list">
+                <li class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="http://unsplash.it/100" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <p> <%= review.body %> </p>
+                            <% if can?(:manage, review) %>
+                            <%= link_to 'delete', review_path(review), method: :delete, data:{ confirm: 'Are You Sure?'}  %>
+                            <% end %>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <span class="pull-left">
+                <h3>
+                  <% @username = User.find review.user_id %>
+                    <%= @username.first_name %>
+                </h3>
+            </span>
+            <span class="pull-right">
+                <h4>
+                    <%= review.updated_at.to_date %></h4>
+            </span>
+
+        </div>
+    </div>
+    <% end  %>
+</div>

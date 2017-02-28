@@ -15,7 +15,7 @@ class IdeasController < ApplicationController
     @idea.user = current_user
     if @idea.save
       flash[:notice] = 'Idea Created Perfectly'
-      redirect_to ideas_path
+      redirect_to idea_path(@idea)
     else
       flash.now[:alert] = 'Please Fix Errors Below'
       render :new
@@ -36,6 +36,10 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy
     redirect_to ideas_path, notice: 'Idea Deleted!'
+  end
+
+  def show
+    @review = Review.new
   end
 
   private

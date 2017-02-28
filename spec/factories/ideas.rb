@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :idea do
-    title "MyString"
-    description "MyString"
-    likes 1
-    user nil
+    association :user, factory: :user
+    title       { Faker::Hipster.sentence }
+    description { Faker::Hacker.say_something_smart }
+    likes       { rand(50) }
   end
 end
