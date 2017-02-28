@@ -19,9 +19,11 @@
     $(this).next('div').fadeToggle("description");
   });
   $( ".lighttrigger" ).mouseenter(function() {
-    $(".lightbulb").toggleClass("yellow");
+    $(".lightbulb").addClass("enter");
+    $(".lightbulb").removeClass("leave");
   });
   $( ".lighttrigger").mouseleave(function() {
-    $(".lightbulb").toggleClass("yellowleave");
+    $(".lightbulb").removeClass("enter");
+    $(".lightbulb").addClass("leave");
   });
 });
