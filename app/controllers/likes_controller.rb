@@ -3,10 +3,10 @@ class LikesController < ApplicationController
   before_action :find_like, only: [:destroy]
   before_action :find_idea, only: [:create]
 
-  def index
-      @user = User.find(params[:user_id])
-      @ideas = @user.liked_ideas
-  end
+  # def index
+  #     @user = User.find(params[:user_id])
+  #     @ideas = @user.liked_ideas
+  # end
 
   def create
     like = Like.new(user: current_user, idea: @idea)

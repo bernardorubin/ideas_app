@@ -147,6 +147,8 @@ edit idea_model
 edit index
 edit show
 
+for deploying->
+	rails assets:precompile
 
 
 ToDo ->
