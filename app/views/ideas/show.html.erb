@@ -1,13 +1,16 @@
 <div class="container">
     <h1>
         <%= @idea.title %>
+
     </h1>
+    <p><%= pluralize @idea.likes.count, 'Like' %></p>
 
 </div>
 <img src="http://unsplash.it/g/1300/300/?random" alt="" class="img-responsive">
 
 <div class="container">
     <hr>
+    <p> <%= @idea.description %></p>
     <p> <%= @idea.description %></p>
 
     <% if can?(:manage, @idea) %>

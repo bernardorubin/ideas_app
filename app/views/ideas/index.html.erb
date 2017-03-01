@@ -11,7 +11,7 @@
       <hr>
       <div class="row">
         <div class="col-xs-12">
-          <h4 class="title"> <strong><%= i.title %></strong> </h4>
+          <h4 class="title lighttrigger"> <strong><%= i.title %></strong> </h4>
           <div class="description">
             <p> <%= link_to i.description, idea_path(i) %> </p>
             <% if can?(:manage, i) %>
@@ -25,8 +25,19 @@
       </div>
       <div class="row">
       <div class="col-xs-3"><% @username = User.find i.user_id %>By <%= @username.first_name %></div>
-      <div class="col-xs-5"> <span class="btn btn-default flat">Joined</span> | <%= link_to '', idea_likes_path(i), class: "btn btn-default flat fa fa-thumbs-up", method: :post %> </div>
-      <div class="col-xs-4" style="text-align:right">Members: 5 | Likes: <%= i.likes %></div>
+      <div class="col-xs-5"> <span class="btn btn-default flat">Joined</span> |
+        <% if user_signed_in? && can?(:like, i) %>
+        <span class="btn btn-default flat lighttrigger">
+            <% if i.liked_by?(current_user)  %>
+              <%= link_to '<i class="fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe, like_path(i.like_for(current_user)), method: :delete %>
+              <%# link_to '', idea_likes_path(i), class: "btn btn-default flat fa fa-thumbs-up", method: :post %>
+          <% else %>
+              <%= link_to '<i class="fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe, idea_likes_path(i), method: :post %>
+          <% end %>
+        </span>
+        <% end %>
+      </div>
+      <div class="col-xs-4" style="text-align:right">Members: 5 | <%= pluralize i.likes.count, 'Like' %></div>
       </div>
     </div>
   <% end  %>

@@ -65,3 +65,13 @@ body {
 .flat {
   padding:0px 5px;
 }
+
+i:hover {
+  transition: all .5s ease-in-out;
+  color: gold;
+}
+
+i {
+  color: $primary-color
+
+}

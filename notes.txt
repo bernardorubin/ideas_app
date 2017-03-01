@@ -1,0 +1,166 @@
+Exam 2 -> Ideas
+
+Config ->
+	rails new ideas -d postgresql -T
+	edit gemfile
+	bundle
+ 	setup bootstrap -> https://github.com/twbs/bootstrap-sass
+
+Generate models ->
+	rails g model user first_name last_name email password_digest
+	rails g model idea title description likes:integer user:references
+	rails g model review  idea:references
+
+Edit Migrations ->
+	edit migrations, add indexes to reviews and ideas
+	“add_index :users, :email” to users migration
+	add default 0 to likes in idea migration
+
+Edit models ->
+	edit models add
+		belongs_to : something
+		has_many :somethings
+	edit user model ->
+		has_secure_password
+	added seeds file
+
+rails db:create
+rails db:migrate
+
+Generate controllers ->
+	rails g controller sessions
+		edit routes
+		edit controller
+	rails g controller ideas
+	rails g controller reviews
+	rails g controller users
+
+
+Check if relationship works
+associate user to post
+                i = Idea.new
+                i.user = User.first
+                i -> shows a user id
+
+Generate routes ->
+
+Add Navbar and footer
+
+add user signed_in functionality to application controller
+add authenticate restrictions in controllers
+
+edit sessions controller
+add sessions views
+
+edit users controller
+add user views
+
+Authorization ->
+	rails g cancan:ability
+	edit ability file
+
+RSPEC ->
+rails g rspec:install
+Not used but if needed…(
+	rails g rspec:controller users
+	rails g rspec:model product
+)
+in rspec->
+	--format NyanCatFormatter
+
+
+defined full_name method in user model
+
+Edit controllers and views add methods to controllers->
+	edit ideas controller and views
+
+
+rails g migration add_is_admin_to_users is_admin:boolean
+in migration add , default: false
+
+rails g migration add_body_to_reviews
+      add_column :reviews, :body, :string
+
+
+
+added in review model
+	  scope :last_first, -> {order("created_at DESC")}
+
+
+edited reviews controller create and destroy
+
+rails g migration add_user_references_to_reviews user:references
+
+edited migration added index
+
+
+Tests
+edited ideas controller spec
+
+
+added to rails helper
+	  config.include FactoryGirl::Syntax::Methods
+deleted all file sin helper folder of rspec
+
+rails g controller likes
+rails d controller likes
+deleted likes controller
+created it again
+
+rolled back migrations removed the likes column on ideas
+deleted like model
+rails g model like user:references idea:references
+rails db:migrate
+edit user model
+		  has_many :likes, dependent: :destroy
+  	has_many :liked_ideas, through: :likes, source: :idea
+edit idea model
+		  has_many :likes, dependent: :destroy
+  has_many :likers, through: :likes, source: :user
+test in console->
+	i = Idea.last
+	u = User.last
+     	 i.likers << u
+	i.likers
+
+edit like model
+# validation guarantees a user can only like an idea once
+validates :idea_id, uniqueness: {scope: :user_id}
+test in console ->
+    l = Like.new(user: User.last, idea: Idea.first)
+    l.save
+    it should rollback!
+edit routes
+create controller
+
+rails d controller likes
+rails g controller likes create destroy --skip-template-engine --skip-assets
+delete created likes routes in routes.rb
+
+edit likes controller
+edit ability.rb
+edit idea_model
+  define -> liked_by?
+  define -> like_for
+
+
+edit index
+edit show
+
+
+
+ToDo ->
+More Tests
+add likes method limit likes with cookies
+Add Modal
+change likes method routes and method name
+
+add validations in models
+
+access all factorygirl everywhere?
+binding.pry
+
+Should create new table ->
+	user_id
+	idea_id
+Then just count to see how many likes

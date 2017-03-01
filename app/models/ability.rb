@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     user ||= User.new
-    
+
     if user.is_admin?
       can :manage, :all
     end
@@ -15,6 +15,15 @@ class Ability
 
     can :manage, Review do |c|
       c.user == user
+    end
+
+    # cannot only defines the ability for the cannot?() method
+    cannot :like, Idea do |q|
+      user == q.user
+    end
+    # can defines the ability for the can?() method
+    can :like, Idea do |q|
+      user != q.user
     end
     #   user ||= User.new # guest user (not logged in)
     #   if user.admin?

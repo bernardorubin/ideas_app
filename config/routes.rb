@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   # patch 'likes' => 'ideas#likes'
 
-  resources :ideas do
-    resources :reviews, shallow: true
-    resources :likes, shallow: true
+  resources :ideas, shallow: true do
+    resources :reviews, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :sessions, only:[:new, :create] do
