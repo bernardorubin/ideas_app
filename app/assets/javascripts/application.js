@@ -14,19 +14,20 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
+
 // $(".title").click(function() {
 //   $(this).next('div').fadeToggle("description");
 // });
-$(document).ready(function(){
-   
-  $(".lighttrigger").mouseenter(function() {
-    $(".lightbulb").addClass("enter");
-    $(".lightbulb").removeClass("leave");
-  });
-
-  $(".lighttrigger").mouseleave(function() {
-    $(".lightbulb").removeClass("enter");
-    $(".lightbulb").addClass("leave");
-  });
+// $(document).ready(function(){
+//
+//   $(".lighttrigger").mouseenter(function() {
+//     $(".lightbulb").addClass("enter");
+//     $(".lightbulb").removeClass("leave");
+//   });
+//
+//   $(".lighttrigger").mouseleave(function() {
+//     $(".lightbulb").removeClass("enter");
+//     $(".lightbulb").addClass("leave");
+//   });
 
 });
