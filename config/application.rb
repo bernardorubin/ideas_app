@@ -1,5 +1,5 @@
 require_relative 'boot'
-config.serve_static_assets = true
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -15,7 +15,7 @@ require "sprockets/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+config.serve_static_files = true
 module Ideas
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
