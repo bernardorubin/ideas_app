@@ -2,9 +2,37 @@
   <div class="row">
     <div class="container">
       <div class="col-xs-9 col-sm-10 col-md-11"> <i class="fa fa-lightbulb-o fa-5x lightbulb" aria-hidden="true"></i> </div>
-      <div class="col-xs-3 col-sm-2 col-md-1"> <%= link_to 'New Idea', new_idea_path, class: "btn btn-default lighttrigger", style: "margin-top:20px" %></div>
+      <!-- <div class="col-xs-3 col-sm-2 col-md-1"> <%# link_to 'New Idea', new_idea_path, class: "btn btn-default lighttrigger", style: "margin-top:20px" %></div> -->
+      <div class="col-xs-3 col-sm-2 col-md-1">   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="margin-top:20px">
+          New Idea
+        </button>
+      </div>
     </div>
   </div>
+
+
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">New Idea</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
   <div class="container">
   <% @ideas.each do |i| %>
     <div class="row">

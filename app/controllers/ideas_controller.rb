@@ -3,6 +3,7 @@ class IdeasController < ApplicationController
   before_action(:find_idea, { only: [:show, :edit, :destroy, :update] })
 
   def index
+    @idea = Idea.new
     @ideas = Idea.order(created_at: :desc)
   end
 
