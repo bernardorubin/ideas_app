@@ -109,6 +109,8 @@ created it again
 
 rolled back migrations removed the likes column on ideas
 deleted like model
+
+BEGIN WITH LIKES IMPLEMENTATION
 rails g model like user:references idea:references
 rails db:migrate
 edit user model
